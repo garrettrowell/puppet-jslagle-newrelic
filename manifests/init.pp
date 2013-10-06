@@ -20,7 +20,8 @@ class newrelic (
   $java_agent_install = $newrelic::params::java_agent_install,
   $license_key        = $newrelic::params::license_key,
   $appname            = $newrelic::params::appname,
-  $autotransname      = $newrelic::params::autotransname
+  $autotransname      = $newrelic::params::autotransname,
+  $java_agent_file    = $newrelic::params::java_agent_file
 ) inherits newrelic::params {
 
   include stdlib
@@ -31,6 +32,7 @@ class newrelic (
   validate_string($license_key)
   validate_string($appname)
   validate_string($autotransname)
+  validate_string($java_agent_file)
 
   anchor { "newrelic::begin": } ->
   class {"newrelic::install": } ->

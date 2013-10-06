@@ -6,6 +6,7 @@ class newrelic::install {
   $source = $newrelic::java_agent_source
   $version = $newrelic::java_agent_version
   $install = $newrelic::java_agent_install
+  $file = $newrelic::java_agent_file
 
   Exec {
     path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
@@ -20,14 +21,14 @@ class newrelic::install {
   }
 
   exec { 'download-newrelic':
-    command => "wget ${source}/${version}/newrelic-agent${version}.zip",
+    command => "wget ${source}/${version}/${file}",
     cwd     => $install,
-    creates => "${install}/newrelic-agent${version}.zip",
+    creates => "${install}/${file}",
   }
 
 
   exec { 'unzip-newrelic':
-    command => "unzip newrelic-agent${version}.zip",
+    command => "unzip ${file}",
     cwd     => $install,
     creates => "${install}/newrelic",
   }
