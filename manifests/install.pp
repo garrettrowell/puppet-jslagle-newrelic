@@ -24,13 +24,14 @@ class newrelic::install {
     command => "wget ${source}/${version}/${file}",
     cwd     => $install,
     creates => "${install}/${file}",
+    notify  => Exec['unzip-newrelic'],
   }
 
 
   exec { 'unzip-newrelic':
-    command => "unzip -o ${file}",
-    cwd     => $install,
-    creates => "${install}/newrelic",
+    command     => "unzip -o ${file}",
+    cwd         => $install,
+    refreshonly => true,
   }
 
 }
