@@ -28,7 +28,7 @@ class newrelic::install {
 
 
   exec { 'unzip-newrelic':
-    command => "unzip ${file}",
+    command => "unzip -o ${file}",
     cwd     => $install,
     creates => "${install}/newrelic",
   }
