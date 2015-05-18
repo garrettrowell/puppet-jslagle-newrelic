@@ -7,6 +7,7 @@ class newrelic::install {
   $version = $newrelic::java_agent_version
   $install = $newrelic::java_agent_install
   $file = $newrelic::java_agent_file
+  $manage_unzip_package = $newrelic::manage_unzip_package
 
   Exec {
     path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
@@ -27,6 +28,12 @@ class newrelic::install {
     notify  => Exec['unzip-newrelic'],
   }
 
+  if $manage_unzip_package {
+    package { 'unzip':
+      ensure => installed,
+      before => Exec['unzip-newrelic'],
+    }
+  }
 
   exec { 'unzip-newrelic':
     command     => "unzip -o ${file}",
