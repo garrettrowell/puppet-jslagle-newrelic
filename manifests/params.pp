@@ -9,4 +9,5 @@ class newrelic::params {
   $license_key        = undef
   $appname            = 'My Application'
   $autotransname      = 'true'
+  $template           = 'newrelic/newrelic.yml.erb'
 }

@@ -7,12 +7,13 @@ class newrelic::config {
   $license_key = $newrelic::license_key
   $autonametrans = $newrelic::authnametrans
   $install = $newrelic::java_agent_install
+  $template = $newrelic::template
 
   file { 'newrelic-config':
     ensure  => present,
     mode    => '0644',
     path    => "${install}/newrelic/newrelic.yml",
-    content => template('newrelic/newrelic.yml.erb'),
+    content => template($template),
   }
 }
 

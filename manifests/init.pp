@@ -21,7 +21,8 @@ class newrelic (
   $license_key        = $newrelic::params::license_key,
   $appname            = $newrelic::params::appname,
   $autotransname      = $newrelic::params::autotransname,
-  $java_agent_file    = $newrelic::params::java_agent_file
+  $java_agent_file    = $newrelic::params::java_agent_file,
+  $template           = $newrelic::params::template,
 ) inherits newrelic::params {
 
   include stdlib
