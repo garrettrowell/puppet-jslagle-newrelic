@@ -15,13 +15,15 @@
 # Copyright 2013 Jason Slagle
 #
 class newrelic (
-  $java_agent_version = $newrelic::params::java_agent_version,
-  $java_agent_source  = $newrelic::params::java_agent_source,
-  $java_agent_install = $newrelic::params::java_agent_install,
-  $license_key        = $newrelic::params::license_key,
-  $appname            = $newrelic::params::appname,
-  $autotransname      = $newrelic::params::autotransname,
-  $java_agent_file    = $newrelic::params::java_agent_file,
+  $java_agent_version   = $newrelic::params::java_agent_version,
+  $java_agent_source    = $newrelic::params::java_agent_source,
+  $java_agent_install   = $newrelic::params::java_agent_install,
+  $license_key          = $newrelic::params::license_key,
+  $appname              = $newrelic::params::appname,
+  $autotransname        = $newrelic::params::autotransname,
+  $java_agent_file      = $newrelic::params::java_agent_file,
+  $agent_enabled        = $newrelic::params::agent_enabled,
+  $manage_unzip_package = $newrelic::params::manage_unzip_package,
   $template           = $newrelic::params::template,
 ) inherits newrelic::params {
 
@@ -34,6 +36,8 @@ class newrelic (
   validate_string($appname)
   validate_string($autotransname)
   validate_string($java_agent_file)
+  validate_string($agent_enabled)
+  validate_bool($manage_unzip_package)
 
   anchor { "newrelic::begin": } ->
   class {"newrelic::install": } ->
