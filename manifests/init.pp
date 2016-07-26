@@ -36,7 +36,7 @@ class newrelic (
   validate_string($appname)
   validate_string($autotransname)
   validate_string($java_agent_file)
-  validate_string($agent_enabled)
+  validate_bool($agent_enabled)
   validate_bool($manage_unzip_package)
 
   anchor { "newrelic::begin": } ->
